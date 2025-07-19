@@ -1,19 +1,24 @@
 Proyecto Zara Este proyecto es una maqueta frontend basada en la web de Zara. Ha sido desarrollada como prueba técnica para demostrar habilidades en maquetación, animaciones y gestión de componentes.
 
 <h3>Instrucciones para ejecutar el proyecto</h3>
+
 Clonar el repositorio
 
-git clone <URL_DEL_REPOSITORIO> cd <NOMBRE_DEL_PROYECTO> Instalar dependencias
+<code>git clone <URL_DEL_REPOSITORIO> cd <NOMBRE_DEL_PROYECTO> Instalar dependencias</code>
 
 npm install Ejecutar en modo desarrollo
 
-npm run dev La aplicación se iniciará en http://localhost:5173 (o el puerto configurado por Vite).
+<code>npm run dev </code>
+
+La aplicación se iniciará en http://localhost:5173 (o el puerto configurado por Vite).
 
 Compilar para producción
 
-npm run build Previsualizar la build
+<code>npm run build</code>
 
-npm run preview
+Previsualizar la build
+
+<code>npm run preview</code>
 
 <h3>Decisiones técnicas tomadas</h3>
 

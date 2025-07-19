@@ -82,7 +82,7 @@
 	</section>
 
 	<section class="gallery-grid-section">
-		<GalleryGrid :images="galleryImages" />
+		<GalleryGrid :images="galleryImages" @ready="refreshScroll" />
 	</section>
 </template>
 
@@ -457,6 +457,7 @@
 
 			&.left-align {
 				text-align: left;
+				margin-right: 50px;
 			}
 
 			&.right-align {

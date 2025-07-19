@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 	import ResponsiveImage from "./ResponsiveImage.vue";
-	import { onMounted, nextTick } from "vue";
+	import { onMounted, nextTick, ref } from "vue";
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -37,6 +37,33 @@
 	const props = defineProps<{
 		images: string[];
 	}>();
+
+	const emit = defineEmits(["ready"]);
+	const loadedImages = ref(0);
+
+	function checkImagesLoaded() {
+		loadedImages.value++;
+		if (loadedImages.value === props.images.length) {
+			nextTick(() => {
+				// Animación de entrada
+				gsap.from(".gallery-grid__item", {
+					scrollTrigger: {
+						trigger: ".gallery-grid__container",
+						start: "top 80%",
+						markers: true,
+					},
+					opacity: 0,
+					y: 30,
+					stagger: 0.1,
+					duration: 1,
+					ease: "power2.out",
+				});
+
+				// Notificar al padre para que refresque ScrollTrigger
+				emit("ready");
+			});
+		}
+	}
 </script>
 
 <style scoped lang="scss">
@@ -51,6 +78,7 @@
 	.gallery-grid {
 		padding-left: 169.06px;
 		padding-right: 145px;
+		padding-bottom: 50px;
 		box-sizing: border-box;
 		&__container {
 			padding-top: 102px;
