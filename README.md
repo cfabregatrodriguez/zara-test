@@ -1,60 +1,100 @@
-Proyecto Zara Este proyecto es una maqueta frontend basada en la web de Zara. Ha sido desarrollada como prueba técnica para demostrar habilidades en maquetación, animaciones y gestión de componentes.
+<h1>Proyecto Zara</h1>
+
+<p>Este proyecto es una maqueta frontend inspirada en la web de Zara. Ha sido desarrollada como prueba técnica para demostrar habilidades en maquetación, animaciones y código.</p>
+
+<hr>
 
 <h3>Instrucciones para ejecutar el proyecto</h3>
 
-Clonar el repositorio
+<ol>
+  <li><strong>Clonar el repositorio</strong>
+    <pre><code>git clone https://github.com/cfabregatrodriguez/zara-test.git
+cd zara-test</code></pre>
+  </li>
 
-<code>git clone <URL_DEL_REPOSITORIO> cd <NOMBRE_DEL_PROYECTO> Instalar dependencias</code>
+  <li><strong>Instalar dependencias</strong>
+    <pre><code>npm install</code></pre>
+  </li>
 
-npm install Ejecutar en modo desarrollo
+  <li><strong>Ejecutar en modo desarrollo</strong>
+    <pre><code>npm run dev</code></pre>
+    <p>La aplicación se iniciará en <a href="http://localhost:5173">http://localhost:5173</a> (o en el puerto configurado por Vite).</p>
+  </li>
 
-<code>npm run dev </code>
+  <li><strong>Compilar para producción</strong>
+    <pre><code>npm run build</code></pre>
+  </li>
 
-La aplicación se iniciará en http://localhost:5173 (o el puerto configurado por Vite).
+  <li><strong>Previsualizar la build</strong>
+    <pre><code>npm run preview</code></pre>
+  </li>
+</ol>
 
-Compilar para producción
+<hr>
 
-<code>npm run build</code>
+<h3>Decisiones técnicas</h3>
+<ul>
+  <li><strong>Framework:</strong> Vue 3 para aprovechar la reactividad y la modularidad de componentes.</li>
+  <li><strong>Build tool:</strong> Vite por su rapidez y soporte nativo de ES Modules.</li>
+  <li><strong>Animaciones:</strong> Implementadas con GSAP y ScrollTrigger para conseguir efectos suaves y controlados durante el scroll.</li>
+  <li><strong>Diseño responsive:</strong> Media queries para una experiencia optimizada en desktop y dispositivos móviles.</li>
+  <li><strong>Componentización:</strong> Se han creado componentes reutilizables como <code>ResponsiveImage</code>, <code>ScrollCarousel</code> y <code>GalleryGrid</code> para mantener un código limpio y escalable.</li>
+  <li><strong>Gestión de imágenes:</strong> Carga responsiva optimizada para diferentes resoluciones.</li>
+  <li><strong>Animaciones persistentes:</strong> Estrategia de refresco de ScrollTrigger para asegurar el correcto funcionamiento incluso tras el montaje dinámico de componentes.</li>
+</ul>
 
-Previsualizar la build
+<hr>
 
-<code>npm run preview</code>
+<h3>Componentes principales</h3>
+<ul>
+  <li><code>ResponsiveImage</code>: Maneja imágenes adaptadas a distintos tamaños de pantalla.</li>
+  <li><code>ScrollCarousel</code>: Carrusel horizontal con soporte táctil y efectos de transición.</li>
+  <li><code>GalleryGrid</code>: Galería responsiva optimizada para diferentes resoluciones.</li>
+</ul>
 
-<h3>Decisiones técnicas tomadas</h3>
-
-Framework: Se utilizó Vue 3 con Composition API para aprovechar la reactividad avanzada y la modularidad de componentes.
-
-Gestor de paquetes: Vite como herramienta de build por su rapidez y soporte nativo de ES Modules.
-
-Animaciones: Implementadas con GSAP y ScrollTrigger para conseguir efectos suaves y controlados al hacer scroll.
-
-<h3>Componentización</h3>
-
-Se crearon componentes reutilizables como ResponsiveImage, ScrollCarousel y GalleryGrid para mantener la estructura limpia y escalable.
-
-Se pasó información dinámica mediante props para mayor flexibilidad.
-
-Responsive Design: Se aplicaron media queries para una experiencia adaptada tanto en desktop como en mobile.
-
-Gestión de imágenes: Las imágenes se cargan de forma responsiva para optimizar el rendimiento en diferentes resoluciones.
-
-Scroll restoration y animaciones: Se aplicó una estrategia de refresco de ScrollTrigger para asegurar que las animaciones funcionen incluso al abrir en pestañas nuevas o tras el montaje dinámico de componentes.
+<hr>
 
 <h3>Tiempo dedicado</h3>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Tarea</th>
+      <th style="text-align: left;">Tiempo estimado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Análisis y planteamiento</td>
+      <td>~1h</td>
+    </tr>
+    <tr>
+      <td>Maquetación y estructura básica</td>
+      <td>~3h</td>
+    </tr>
+    <tr>
+      <td>Animaciones y efectos</td>
+      <td>~2h 30min</td>
+    </tr>
+    <tr>
+      <td>Ajustes responsive y pulido final</td>
+      <td>~1h 30min</td>
+    </tr>
+    <tr>
+      <td>Revisión y pruebas finales</td>
+      <td>~1h</td>
+    </tr>
+    <tr>
+      <th>Total aproximado</th>
+      <th>~9h</th>
+    </tr>
+  </tbody>
+</table>
 
-Análisis y planteamiento: ~1h
-
-Maquetación y estructura básica: ~3h
-
-Animaciones y efectos: ~2h 30min
-
-Ajustes responsive y pulido: ~1h 30min
-
-Revisión y pruebas finales: ~1h
-
-Total aproximado: ~9h
+<hr>
 
 <h3>Notas adicionales</h3>
-El proyecto está optimizado para ser visualmente similar a la referencia original de Zara Origins, pero no incluye lógica backend ni gestión de datos en tiempo real.
-
-Requiere Node.js >= 18 para ejecutarse correctamente.
+<p>
+  El proyecto está optimizado para ser visualmente similar a la referencia original del mockup proporcionado por Zara.<br>
+  No incluye lógica backend ni gestión de datos en tiempo real.<br>
+  Requiere <strong>Node.js >= 18</strong> para ejecutarse correctamente.
+</p>

@@ -3,7 +3,7 @@
 
 body {
 	font-family: $font-stack;
-	font-size: 12px;
+	font-size: $font-base;
 	line-height: 15px;
 	letter-spacing: 0.18px;
 	background: #fff;
@@ -14,10 +14,12 @@ body {
 	filter: blur(0.05px);
 	max-width: 2048px;
 	margin: 0 auto;
+	overflow-x: hidden;
 }
 
 html {
 	overflow: auto;
+	overflow-x: hidden;
 	-ms-overflow-style: none; /* IE y Edge */
 	scrollbar-width: none; /* Firefox */
 

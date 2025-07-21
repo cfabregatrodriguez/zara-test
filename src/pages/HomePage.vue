@@ -1,8 +1,8 @@
 <template>
 	<section class="intro-section">
 		<div class="texts-container">
-			<h1 class="intro-text intro-text--title">ZARA ORIGINS</h1>
-			<p class="intro-text intro-text--second">
+			<h1 class="intro-text intro-text__title">ZARA ORIGINS</h1>
+			<p class="intro-text intro-text__second">
 				Identity by MSM Paris
 				<br />
 				Photography by Jaime Hakesworth
@@ -13,11 +13,11 @@
 				<br />
 				Produced by Canada
 			</p>
-			<p class="intro-text intro-text--third">Inspired by Vivaldi’s Four Seasons</p>
+			<p class="intro-text intro-text__third">Inspired by Vivaldi’s Four Seasons</p>
 		</div>
 
 		<figure class="image-container">
-			<ResponsiveImage imageName="img01" class="split-show" alt="ZARA Origins Collection by Jamie Hakesworth" />
+			<ResponsiveImage imageName="img01" alt="ZARA Origins Collection by Jamie Hakesworth" />
 			<figcaption class="image-caption">
 				Picture by Jamie Hakesworth
 				<br />
@@ -36,10 +36,10 @@
 		<div class="half-image-section__image">
 			<ResponsiveImage imageName="img03" alt="ZARA Origins garment close-up" class="split-show" />
 		</div>
-		<article class="half-image-section__text slow-show">
-			<h2 class="half-image-section__title">ZARA ORIGINS</h2>
-			<h3 class="half-image-section__subtitle">#Permanent Collection</h3>
-			<p class="half-image-section__description">Zara Origins is a project focused upon building a contemporary wardrobe. The aim is to conceive, create and offer garments which are newly-refined archetypes of their kind, fabricated in the finest materials, and manufactured with high standards of expertise and craft. It harnesses progressive desing to combine modern concepts with outstanding valve.</p>
+		<article class="half-image-section__text">
+			<h2 class="half-image-section__title slow-show">ZARA ORIGINS</h2>
+			<h3 class="half-image-section__subtitle slow-show">#Permanent Collection</h3>
+			<p class="half-image-section__description slow-show">Zara Origins is a project focused upon building a contemporary wardrobe. The aim is to conceive, create and offer garments which are newly-refined archetypes of their kind, fabricated in the finest materials, and manufactured with high standards of expertise and craft. It harnesses progressive desing to combine modern concepts with outstanding valve.</p>
 		</article>
 	</section>
 
@@ -50,7 +50,7 @@
 	<section class="double-image-section">
 		<figure class="image-block split-show">
 			<ResponsiveImage imageName="img09" alt="ZARA Origins editorial image" />
-			<figcaption class="image-caption">When Zara Origins launched its first two collection for the winter and summer seasons, the constantly evoluing project was defined by thes statement. After two editions allowing for experimentation within the collection, the approach for the third editon has evolved naturally solidifying Zara Origins as a yearlong offering of wardrobe essentials that will be supplemented with limited edition seasonal piece.</figcaption>
+			<figcaption class="image-caption slow-show">When Zara Origins launched its first two collection for the winter and summer seasons, the constantly evoluing project was defined by thes statement. After two editions allowing for experimentation within the collection, the approach for the third editon has evolved naturally solidifying Zara Origins as a yearlong offering of wardrobe essentials that will be supplemented with limited edition seasonal piece.</figcaption>
 		</figure>
 
 		<div class="image-block no-caption split-show reverse">
@@ -82,19 +82,19 @@
 	</section>
 
 	<section class="gallery-grid-section">
-		<GalleryGrid :images="galleryImages" @ready="refreshScroll" />
+		<GalleryGrid :images="galleryImages" v-show="true" @ready="refreshScroll" />
 	</section>
 </template>
 
 <script setup lang="ts">
-	import { onMounted, onBeforeUnmount } from "vue";
-	import ResponsiveImage from "../components/ResponsiveImage.vue";
-	import ScrollCarousel from "../components/ScrollCarousel.vue";
-	import GalleryGrid from "../components/GalleryGrid.vue";
-	import { gsap } from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { onMounted, onBeforeUnmount, nextTick } from "vue"
+	import ResponsiveImage from "../components/ResponsiveImage.vue"
+	import ScrollCarousel from "../components/ScrollCarousel.vue"
+	import GalleryGrid from "../components/GalleryGrid.vue"
+	import { gsap } from "gsap"
+	import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-	gsap.registerPlugin(ScrollTrigger);
+	gsap.registerPlugin(ScrollTrigger)
 
 	const carouselImages = [
 		{ name: "img04", caption: "01 / 05" },
@@ -102,32 +102,71 @@
 		{ name: "img06", caption: "03 / 05" },
 		{ name: "img07", caption: "04 / 05" },
 		{ name: "img08", caption: "05 / 05" },
-	];
+	]
 
 	const carouselImagesBot = [
 		{ name: "img12", caption: "01 / 05" },
-		{ name: "img13", caption: "02 / 05" },
+		{
+			name: "img13",
+			caption: "02 / 05",
+			text: "When Zara Origins launched its first two collection for the winter and summer seasons, the constantly evoluing project was defined by thes statement. After two editions allowing for experimentation within the collection, the approach for the third editon has evolved naturally solidifying Zara Origins as a yearlong offering of wardrobe essentials.<br /><br />When Zara Origins launched its first two collection for the winter and summer seasons, the constantly evoluing project was defined by thes statement. After two editions allowing for experimentation within the collection, the approach for the third editon has evolved naturally solidifying Zara Origins as a yearlong offering of wardrobe essentials.When Zara Origins launched its first two collection for the winter and summer seasons, the constantly evoluing project was defined by thes statement. After two editions allowing for experimentation within.",
+		},
 		{ name: "img14", caption: "03 / 05" },
 		{ name: "img15", caption: "04 / 05" },
 		{ name: "img16", caption: "05 / 05" },
-	];
+	]
 
-	const galleryImages = Array.from({ length: 25 }, (_, i) => `grid${String(i + 1).padStart(2, "0")}`);
+	const galleryImages = Array.from({ length: 25 }, (_, i) => `grid${String(i + 1).padStart(2, "0")}`)
 
 	function refreshScroll() {
 		setTimeout(() => {
-			ScrollTrigger.refresh();
-			console.log("ScrollTrigger refreshed after carousel ready");
-		}, 100);
+			ScrollTrigger.refresh()
+		}, 300)
 	}
 
-	onMounted(() => {
-		ScrollTrigger.getAll().forEach((t) => t.kill());
+	function imagesLoaded() {
+		return new Promise<void>((resolve) => {
+			document.querySelectorAll("img").forEach((img) => {
+				img.loading = "eager"
+			})
+			const images = document.querySelectorAll("img")
+			let loadedCount = 0
+			const totalImages = images.length
 
-		const images = Array.from(document.images);
-		let loadedCount = 0;
 
-		const isMobile = window.innerWidth <= 768;
+			if (totalImages === 0) {
+				resolve()
+				return
+			}
+
+			images.forEach((img) => {
+				if (img.complete && img.naturalHeight !== 0) {
+					loadedCount++
+					if (loadedCount === totalImages) {
+						resolve()
+					}
+				} else {
+					img.addEventListener("load", () => {
+						loadedCount++
+						if (loadedCount === totalImages) {
+							resolve()
+						}
+					})
+					img.addEventListener("error", () => {
+						loadedCount++
+						if (loadedCount === totalImages) {
+							resolve()
+						}
+					})
+				}
+			})
+		})
+	}
+
+	function setupAnimations() {
+		ScrollTrigger.getAll().forEach((t) => t.kill())
+
+		const isMobile = window.innerWidth <= 768
 
 		gsap.fromTo(
 			".parallax-scale",
@@ -142,18 +181,18 @@
 					invalidateOnRefresh: true,
 				},
 			}
-		);
+		)
 
 		gsap.utils.toArray(".split-show").forEach((el: any) => {
-			const isReverse = el.closest(".reverse");
-			const xOffset = isReverse ? 100 : -100;
+			const isReverse = el.closest(".reverse")
+			const xOffset = isReverse ? 100 : -100
 
 			gsap.fromTo(
 				el,
-				{ opacity: 0, x: xOffset },
+				{ opacity: 0, transform: `translateX(${xOffset}px)` },
 				{
 					opacity: 1,
-					x: 0,
+					transform: "translateX(0)",
 					duration: 1.2,
 					ease: "power3.out",
 					scrollTrigger: {
@@ -163,352 +202,440 @@
 						invalidateOnRefresh: true,
 					},
 				}
-			);
-		});
-	});
+			)
+		})
+
+		gsap.utils.toArray<HTMLElement>(".slow-show").forEach((el) => {
+			gsap.set(el, { opacity: 0, y: 20, visibility: "hidden" })
+
+			ScrollTrigger.create({
+				trigger: el,
+				start: window.innerWidth <= 768 ? "top 95%" : "top 85%",
+				toggleActions: "play none none reverse",
+				onEnter: () => {
+					gsap.to(el, {
+						opacity: 1,
+						y: 0,
+						visibility: "visible",
+						duration: 1,
+						ease: "power2.out",
+					})
+				},
+				onLeaveBack: () => {
+					gsap.to(el, {
+						opacity: 0,
+						y: 20,
+						visibility: "hidden",
+						duration: 0.5,
+					})
+				},
+			})
+		})
+
+		ScrollTrigger.refresh(true)
+	}
+
+	function onResize() {
+		ScrollTrigger.refresh()
+	}
+
+	onMounted(() => {
+			nextTick(() => {
+				requestAnimationFrame(() => {
+					imagesLoaded().then(() => {
+						setupAnimations()
+					})
+				})
+		})
+		window.addEventListener("resize", onResize)
+	})
+
+	onBeforeUnmount(() => {
+		window.removeEventListener("resize", onResize)
+		ScrollTrigger.getAll().forEach((t) => t.kill())
+		gsap.globalTimeline.clear()
+		ScrollTrigger.clearMatchMedia()
+	})
 </script>
 
+
+
+
+
 <style scoped lang="scss">
-	h1,
-	h2,
-	h3 {
-		font-weight: 400;
-	}
-	section {
-		position: relative;
-	}
+h1, h2, h3 {
+	font-weight: 400;
+	font-size: 1em;
+	margin-top: unset;
+	margin-bottom: unset;
+}
 
-	figure {
-		margin: 0;
-		display: block;
-	}
+section {
+  position: relative;
+}
 
-	figcaption {
-		margin: 0;
-		padding: 0;
-	}
+figure {
+  margin: 0;
+  display: block;
+}
 
-	.intro-section {
-		margin-top: 106.03px;
-		display: flex;
-		max-width: 100%;
-		align-items: center;
-		margin-left: 160px;
-		margin-right: 225px;
-		width: calc(100% - 386.33px);
+figcaption {
+  margin: 0;
+  padding: 0;
+}
 
-		.texts-container {
-			margin-top: 2px;
-			display: flex;
-			flex: 1 1 auto;
-			justify-content: space-between;
-			text-align: right;
-			.intro-text {
-				font-size: 12px;
-				&--title {
-					font-size: 13px;
-					width: 70px;
-					letter-spacing: 0;
-					margin-right: 52px;
-				}
-				&--second {
-					width: 183.05px;
-					margin-right: 18px;
-				}
-				&--third {
-					width: 120px;
-				}
-			}
-		}
+.intro-section {
+  margin-top: 106.03px;
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  margin-left: $spacing-desktop;
+  margin-right: 225px;
+  width: calc(100% - 386.33px);
 
-		.image-container {
-			margin-left: 106.97px;
-			flex-shrink: 1;
-		}
+  .texts-container {
+    margin-top: 2px;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    text-align: right;
 
-		.image-caption {
-			text-align: right;
-			margin-top: 18px;
-			margin-bottom: 0;
-		}
+    .intro-text {
+      font-size: $font-base;
 
-		@media (max-width: 1200px) {
-			width: 100%;
-			margin-left: 0;
-			margin-right: 0;
-			flex-direction: column;
+      &__title {
+        font-size: $font-title;
+        width: 70px;
+        letter-spacing: 0;
+        margin-right: 52px;
+		margin-top: 12px;
+      }
 
-			.texts-container {
-				justify-content: center;
-				margin-bottom: 20px;
+      &__second {
+        width: 183.05px;
+        margin-right: 18px;
+      }
 
-				.intro-text {
-					font-size: 14px;
-					text-align: center;
-				}
-			}
+      &__third {
+        width: 120px;
+      }
+    }
+  }
 
-			.image-container {
-				margin-left: 0;
-				max-width: 100%;
-			}
-			.texts-container {
-				flex-direction: column;
-				text-align: center;
-				.intro-text {
-					&--title,
-					&--second,
-					&--third {
-						width: 100%;
-						margin-left: 0;
-						margin-right: 0;
-					}
+  .image-container {
+    margin-left: 106.97px;
+    flex-shrink: 1;
+  }
 
-					&--title {
-						font-size: 16px;
-					}
-				}
-			}
-		}
+  .image-caption {
+    text-align: right;
+    margin-top: 18px;
+    margin-bottom: 0;
+  }
 
-		@media (max-width: 768px) {
-			margin-top: 40px;
-			margin-left: auto;
-			margin-right: auto;
-			width: calc(100% - 36px);
+  @include respond(tablet) {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    flex-direction: column;
 
-			.image-container {
-				width: 100%;
-			}
-		}
-	}
+    .texts-container {
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-direction: column;
+      text-align: center;
 
-	.full-width-image-section {
-		margin-top: 73px;
-		max-width: 100%;
-		overflow: hidden;
-	}
-	.parallax-scale {
-		display: block;
-		width: 100%;
-		will-change: transform;
-	}
+      .intro-text {
+        font-size: 14px;
 
-	.half-image-section {
-		max-width: 100%;
-		display: flex;
-		height: auto;
-		margin-left: 18.38px;
-		margin-top: 143.61px;
-		align-items: flex-end;
+        &__title,
+        &__second,
+        &__third {
+          width: 100%;
+          margin-left: 0;
+          margin-right: 0;
+        }
 
-		&__image {
-			flex: 1;
-			max-width: 875.48px;
-		}
+        &__title {
+          font-size: $font-title-mobile;
+        }
+      }
+    }
 
-		&__text {
-			background: #fff;
-			flex-direction: column;
-			justify-content: center;
-			margin-left: 73px;
-			width: 414.62px;
-			margin-bottom: -5px;
-		}
-		&__title {
-			margin-bottom: 12px;
-		}
+    .image-container {
+      margin-left: 0;
+      max-width: 100%;
+    }
+  }
 
-		&__subtitle {
-			margin-bottom: 12px;
-		}
+  @include respond(mobile) {
+    margin-top: $spacing-md;
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 36px);
 
-		&__title,
-		&__subtitle {
-			font-size: 13px;
-			letter-spacing: 0px;
-			line-height: 100%;
-		}
-		&__description {
-			margin-bottom: 0;
-		}
-		@media (max-width: 768px) {
-			flex-direction: column;
-			margin-left: 18px;
-			margin-right: 18px;
+    .image-container {
+      width: 100%;
+    }
+  }
+}
 
-			&__title {
-				margin-top: 40px;
-			}
-			&__image,
-			&__text {
-				flex: unset;
-				width: 100%;
-			}
-		}
+.full-width-image-section {
+  margin-top: 73px;
+  max-width: 100%;
+  overflow: hidden;
+
+  .parallax-scale {
+    display: block;
+    width: 100%;
+    will-change: transform;
+  }
+}
+
+.half-image-section {
+  max-width: 100%;
+  display: flex;
+  height: auto;
+  margin-left: 18.38px;
+  margin-top: 143.61px;
+  align-items: flex-end;
+
+  &__image {
+    flex: 1;
+    max-width: 875.48px;
+  }
+
+  &__text {
+    background: $color-bg;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 73px;
+    width: 414.62px;
+	margin-bottom: -5px;
+  }
+
+	&__title {
+		margin-bottom: 10px;
+		font-size: $font-title;
+		letter-spacing: 0px;
+		line-height: 100%;
 	}
 
-	.half-carousel-section {
-		margin-top: 243.62px;
-		@media (max-width: 768px) {
-			margin-top: 125.98px;
-		}
+	&__subtitle {
+		margin-bottom: 12px;
+		font-size: $font-title;
+		letter-spacing: 0px;
+		line-height: 100%;
 	}
 
-	.double-image-section {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		margin-left: 61px;
-		margin-right: 97.43px;
-		margin-top: 180px;
-		gap: 73.06px;
+	&__description {
+		margin-bottom: 0;
+	}
 
-		.image-block {
-			display: flex;
-			flex-direction: column;
-			align-items: left;
+  @include respond(mobile) {
+    flex-direction: column;
+    margin-left: $spacing-mobile;
+    margin-right: $spacing-mobile;
 
-			img {
-				max-width: 100%;
-				height: auto;
-				display: block;
-			}
+    &__title {
+      margin-top: $spacing-md;
+    }
 
-			.image-caption {
-				margin-top: 78px;
-				font-size: 12px;
+    &__image,
+    &__text {
+      flex: unset;
+      width: 100%;
+    }
+  }
+}
+
+.half-carousel-section {
+  margin-top: 243.62px;
+
+  @include respond(mobile) {
+    margin-top: 125.98px;
+  }
+}
+
+.double-image-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-left: 61px;
+  margin-right: 97.43px;
+  margin-top: 180px;
+  gap: 73.06px;
+
+  .image-block {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-caption {
+      margin-top: 78px;
+      font-size: $font-base;
+      text-align: left;
+      width: 401.93px;
+    }
+
+    &.no-caption .image-caption {
+      display: none;
+    }
+  }
+
+  @include respond(tablet) {
+    flex-direction: column;
+    gap: 120px;
+    margin-top: 120px;
+    margin-left: 18px;
+    margin-right: 18px;
+
+    .image-block {
+      flex-direction: row;
+      align-items: center;
+
+      &.no-caption {
+        width: 100%;
+      }
+
+      .image-caption {
+        margin-top: 0;
+        margin-left: 73.09px;
+      }
+    }
+  }
+
+  @include respond(mobile) {
+    .image-block {
+      display: block;
+
+      .image-caption {
+        width: 100%;
+        margin-left: 0;
+        margin-top: $spacing-md;
+      }
+    }
+  }
+}
+
+.bot-carousel-section {
+  margin-top: 225.98px;
+
+  @include respond(mobile) {
+    margin-top: 125.98px;
+  }
+}
+
+.image-text-section {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin: 105.42px 0 0 47.41px;
+
+  .image-text__image {
+    width: 100%;
+    max-width: 1162.91px;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .image-text__content {
+    text-align: right;
+    width: 395.13px;
+    margin-left: 67.84px;
+    margin-bottom: -4px;
+
+    &.left-align {
+      text-align: left;
+      margin-right: 50px;
+    }
+
+    &.right-align {
+      text-align: right;
+    }
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
+    margin-right: 162.98px;
+    margin-top: 327.68px;
+
+    .image-text__image {
+      width: 100%;
+      max-width: 874.63px;
+    }
+
+    .image-text__content {
+      width: 395.13px;
+      margin-right: 65.37px;
+    }
+  }
+  
+  @include respond(tablet) {
+	&.reverse {
+		margin-top: 227.68px;
+	}
+  }
+
+  @include respond(mobile) {
+    flex-direction: column;
+    margin: 125.98px 0 0 0;
+	align-items: center;
+
+    .image-text__content {
+      text-align: left;
+	  padding: $spacing-md $spacing-mobile 0 $spacing-mobile;
+	  width: auto;
+	  &.left-align {
+		margin-right: 0;
+		margin-left: 0;
+	  }
+    }
+
+    &.reverse {
+		margin-left: 0;
+		margin-right: 0;
+      	margin-top: 106.42px;
+	  	flex-direction: column;
+		  .image-text__content {
+				width: auto;
 				text-align: left;
-				width: 401.93px;
-			}
-
-			&.no-caption {
-				.image-caption {
-					display: none;
-				}
-			}
-		}
-
-		@media (max-width: 1200px) {
-			flex-direction: column;
-			gap: 120px;
-			margin-top: 120px;
-			margin-left: 18px;
-			margin-right: 18px;
-			.image-block {
-				flex-direction: row;
-				align-items: center;
-				&.no-caption {
-					width: 100%;
-				}
-			}
-
-			.image-caption {
-				margin-top: 0;
-				font-size: 12px;
-				width: 401.93px;
-				margin-left: 73.09px;
-			}
-		}
-
-		@media (max-width: 768px) {
-			.image-block {
-				display: block;
-				.image-caption {
-					width: 100%;
+				padding: $spacing-md $spacing-mobile 0 $spacing-mobile;
+				&.right-align {
+					margin-right: 0;
 					margin-left: 0;
-					margin-top: 40px;
 				}
 			}
-		}
-	}
+    }
+  }
+}
 
-	.bot-carousel-section {
-		margin-top: 225.98px;
-		@media (max-width: 768px) {
-			margin-top: 125.98px;
-		}
-	}
+.gallery-grid-section {
+  margin-top: 133.47px;
+}
 
-	.image-text-section {
-		display: flex;
-		align-items: flex-end;
-		justify-content: flex-start;
-		margin: 280.42px 0 0 47.41px;
+.split-show {
+  opacity: 0;
+}
 
-		.image-text__image {
-			width: 100%;
-			max-width: 1162.91px;
-			display: flex;
-			justify-content: center;
+.slow-show {
+  visibility: hidden;
+}
 
-			img {
-				width: 100%;
-				height: auto;
-				object-fit: cover;
-			}
-		}
-
-		.image-text__content {
-			text-align: right;
-			width: 395.13px;
-			margin-left: 67.84px;
-			margin-bottom: -4px;
-
-			&.left-align {
-				text-align: left;
-				margin-right: 50px;
-			}
-
-			&.right-align {
-				text-align: right;
-			}
-		}
-
-		&.reverse {
-			flex-direction: row-reverse;
-			margin-right: 162.98px;
-			margin-top: 327.68px;
-
-			.image-text__image {
-				width: 100%;
-				max-width: 874.63px;
-			}
-
-			.image-text__content {
-				width: 395.13px;
-				margin-right: 65.37px;
-			}
-		}
-
-		@media (max-width: 768px) {
-			flex-direction: column;
-			margin: 125.98px 0 0 0;
-
-			&.image-text-section {
-				flex-direction: column;
-				margin-right: 18px;
-				margin-left: 18px;
-				&.reverse {
-					margin-top: 106.42px;
-				}
-				.image-text__content {
-					text-align: left;
-					margin-top: 40px;
-					width: 100%;
-					margin-right: 0px;
-					margin-left: 0px;
-					margin-bottom: 0px;
-				}
-			}
-		}
-	}
-
-	.gallery-grid-section {
-		margin-top: 133.47px;
-	}
-
-	.split-show {
-		opacity: 0;
-	}
+.slow-show .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
 </style>
