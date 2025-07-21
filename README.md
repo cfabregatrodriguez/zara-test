@@ -18,7 +18,7 @@ cd zara-test</code></pre>
 
   <li><strong>Ejecutar en modo desarrollo</strong>
     <pre><code>npm run dev</code></pre>
-    <p>La aplicación se iniciará en <a href="http://localhost:5173">http://localhost:5173</a> (o en el puerto configurado por Vite).</p>
+    <p>La aplicación se iniciará en <a href="http://localhost:xxxx">http://localhost:xxxx</a> (o en el puerto configurado por Vite).</p>
   </li>
 
   <li><strong>Compilar para producción</strong>
@@ -36,7 +36,11 @@ cd zara-test</code></pre>
 <ul>
   <li><strong>Framework:</strong> Vue 3 para aprovechar la reactividad y la modularidad de componentes.</li>
   <li><strong>Build tool:</strong> Vite por su rapidez y soporte nativo de ES Modules.</li>
-  <li><strong>Animaciones:</strong> Implementadas con GSAP y ScrollTrigger para conseguir efectos suaves y controlados durante el scroll.</li>
+  <li><strong>Sass:</strong> Preprocesador CSS para estilos más organizados.</li>
+  
+  <li><strong>GSAP:</strong> Para animaciones complejas y ScrollTrigger.</li>
+  <li><strong>Swiper:</strong> Para carruseles táctiles responsivos.</li>
+
   <li><strong>Diseño responsive:</strong> Media queries para una experiencia optimizada en desktop y dispositivos móviles.</li>
   <li><strong>Componentización:</strong> Se han creado componentes reutilizables como <code>ResponsiveImage</code>, <code>ScrollCarousel</code> y <code>GalleryGrid</code> para mantener un código limpio y escalable.</li>
   <li><strong>Gestión de imágenes:</strong> Carga responsiva optimizada para diferentes resoluciones.</li>

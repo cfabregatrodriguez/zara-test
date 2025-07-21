@@ -20,21 +20,3 @@
     }
   }
 }
-
-@mixin responsive-margin($desktop, $mobile) {
-    margin-left: $desktop;
-    margin-right: $desktop;
-  
-    @media (max-width: $breakpoint-tablet) {
-      margin-left: $mobile;
-      margin-right: $mobile;
-    }
-  }
-  
-  @mixin section-spacing($desktop, $mobile) {
-    margin-top: $desktop;
-  
-    @media (max-width: $breakpoint-mobile) {
-      margin-top: $mobile;
-    }
-  }
