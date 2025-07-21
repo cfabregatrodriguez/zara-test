@@ -8,7 +8,6 @@ const routes = [
 		name: "Home",
 		component: HomePage,
 	},
-	// Puedes añadir más rutas aquí más adelante
 ];
 
 const router = createRouter({
