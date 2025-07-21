@@ -584,7 +584,7 @@ figcaption {
   
   @include respond(tablet) {
 	&.reverse {
-		margin-top: 227.68px;
+		margin-top: 127.68px;
 	}
   }
 

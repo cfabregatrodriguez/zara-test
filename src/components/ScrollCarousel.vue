@@ -17,6 +17,7 @@
 		:pagination="{ clickable: true }"
 		class="mobile-swiper"
 		:style="{ '--image-height': dynamicHeight }"
+  		:slide-to-clicked-slide="true"
 		>
 		<swiper-slide
 			v-for="(img, index) in images"
